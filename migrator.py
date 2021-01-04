@@ -11,6 +11,7 @@ mycol2 = mydb["credits"]
 mycol3 = mydb["users"]
 mycol4 = mydb["keywords"]
 mycol5 = mydb["ratings"]
+mycol6 = mydb["recommendations"]
 
 # for y in mycol.find():
 #     endpoint = "https://api.themoviedb.org/3/movie/" + str(y["id"]) + "/credits?api_key=" + "2b3dbc328df6c9999aa6a6a1214dcbd0" + "&language=en-US"

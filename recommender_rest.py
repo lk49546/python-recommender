@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route('/api/users/<id>/recommendations')
 def get_recommendations(id):
-    qty = int(request.args.get('qty'))
+    qty = request.args.get('qty', default=10, type=int)
     recommender2.get_recommendations(id, qty)
     resp = jsonify(success=True)
     return resp

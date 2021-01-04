@@ -73,7 +73,7 @@ def init():
     global cosine_sim
     cosine_sim = linear_kernel(count_matrix, count_matrix)
 
-    global titles
-    titles = films_detail_info.title
+    global ids
+    ids = films_detail_info.id
     global indices
-    indices = pd.Series([i for i in range(len(films_detail_info))], index=films_detail_info.title)
+    indices = pd.Series([i for i in range(len(films_detail_info))], index=films_detail_info.id)
