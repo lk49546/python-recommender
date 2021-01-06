@@ -50,8 +50,6 @@ def init():
     films_detail_info['genres'] = films_detail_info['genres'].apply(lambda x: [w['name'].replace(" ", "").lower() for w in x])
     films_detail_info['castname'] = films_detail_info['cast'].apply(get_cast_name)
     films_detail_info['cast'] = films_detail_info['castname'].apply(lambda x: x[:3] if len(x) > 3 else x)
-    films_detail_info['keywords'] = films_detail_info['keywords'].apply(lambda x: [i['name'] for i in x] if isinstance(x, list) else [])
-    #films_detail_info['keywords'] = list(filter(lambda x: x not in stop_words, films_detail_info['keywords']))
     films_detail_info.cast = films_detail_info.cast.apply(lambda x: [w.replace(" ", "").lower() for w in x])
     films_detail_info.director = films_detail_info.director.astype('str').apply(lambda x: x.replace(" ", "").lower())
     films_detail_info.director = films_detail_info.director.apply(lambda x: [x, x, x])

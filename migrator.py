@@ -34,10 +34,11 @@ mycol6 = mydb["recommendations"]
 #     res["cast"] = casts
 #     mycol2.insert_one(res)
 
-# for y in mycol.find():
-#     endpoint = "https://api.themoviedb.org/3/movie/" + str(y["id"]) + "/keywords?api_key=" + "2b3dbc328df6c9999aa6a6a1214dcbd0"
-#     test_dict = requests.get(endpoint).json()
-#     mycol4.insert_one(test_dict)
+for y in mycol.find():
+    endpoint = "https://api.themoviedb.org/3/movie/" + str(y["id"]) + "/keywords?api_key=" + "2b3dbc328df6c9999aa6a6a1214dcbd0"
+    test_dict = requests.get(endpoint).json()
+    test_dict["keywords"] = list(map(lambda x: x["name"], test_dict["keywords"]))
+    mycol4.insert_one(test_dict)
 
 
 # mycol5.insert_one({
