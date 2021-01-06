@@ -1,5 +1,4 @@
 import settings
-from bson.objectid import ObjectId
 import numpy as np
 import pandas as pd
 
@@ -8,7 +7,7 @@ def get_recommendations(userId, number):
     i = 0
     recommendations = []
     reversed_recommendations = dict()
-    ratings = pd.DataFrame(list(settings.mycol_ratings.find({"userId" : ObjectId(userId)}))).movieId
+    ratings = pd.DataFrame(list(settings.mycol_ratings.find({"userId" : userId}))).movieId
     for rating in ratings:
         mov_dict = get_recommendation(rating, number).to_dict()
         for key, value in mov_dict.items():
@@ -21,10 +20,10 @@ def get_recommendations(userId, number):
     while len(recommendations) < number:
         recommendations.append(reversed_recommendations_list[i])
         i += 1
-    delete_query = { "userId": ObjectId(userId) }
+    delete_query = { "userId": userId }
     settings.mycol_recommendations.delete_many(delete_query)
     for i in recommendations[:number]:
-        settings.mycol_recommendations.insert_one({"userId" : ObjectId(userId), "movieId": i})
+        settings.mycol_recommendations.insert_one({"userId" : userId, "movieId": i})
 
 
 
