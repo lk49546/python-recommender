@@ -7,6 +7,7 @@ import numpy as np
 from nltk.stem.snowball import SnowballStemmer
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.metrics.pairwise import linear_kernel, cosine_similarity
+import migrator
 
 def get_director(crew):
     for member in crew:
@@ -28,6 +29,7 @@ def filter_keywords(keywords, key):
     return words
 
 def init():
+    migrator.fetch_keywords()
     myclient = pymongo.MongoClient("mongodb://drumreAdmin:ovojedugackasifra@sedam.eu:27017/")
     mydb = myclient["dm"]
     global mycol_recommendations
